@@ -1,0 +1,32 @@
+{
+  "name": "electron-gadget",
+  "version": "0.0.1",
+  "description": "Electron Desktop Gadget.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h141dev/electron-gadget.git"
+  },
+  "keywords": [
+    "nodejs",
+    "electron",
+    "desktop",
+    "gadget"
+  ],
+  "author": "h141",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h141dev/electron-gadget/issues"
+  },
+  "homepage": "https://github.com/h141dev/electron-gadget#readme",
+  "devDependencies": {
+    "electron-connect": "^0.2.1",
+    "gulp": "^3.9.0"
+  },
+  "dependencies": {
+    "d3": "^3.5.6"
+  }
+}

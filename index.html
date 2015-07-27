@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Electron Desktop Gadget</title>
+    <style>
+      body {
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
+        overflow:hidden;
+      }
+    </style>
+    <script>require('electron-connect').client.create()</script>
+    <script src="gadget.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
