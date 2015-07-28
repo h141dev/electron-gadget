@@ -13,12 +13,21 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
+    var atomScreen = require('screen');
+    var size = atomScreen.getPrimaryDisplay().workAreaSize;
+
+    //console.log(atomScreen.getCursorScreenPoint());
+
     mainWindow = new BrowserWindow({
         width: 200,
         height: 600,
-//        transparent: true,
-//        frame: false
+        x : size.width,
+        y : 0,
+        resizable : false,
+        transparent: true,
+        frame: false
     });
+
     mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
     mainWindow.on('closed', function() {
@@ -27,7 +36,7 @@ app.on('ready', function() {
 });
 
 ipc.on('openDevTools', function(event, arg) {
-    mainWindow.openDevTools();
+    mainWindow.openDevTools({detach:true});
 });
 
 ipc.on('appClose', function(event, arg) {
