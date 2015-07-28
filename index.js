@@ -16,7 +16,8 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-    appIcon = new Tray('info-128.png');
+    var iconpath = __dirname + '/info-128.png';
+    appIcon = new Tray(iconpath.toString());
     var contextMenu = Menu.buildFromTemplate([
             { label: 'OpenDevTools', click: function(){ mainWindow.openDevTools({detach:true}); } },
             { label: 'Quit', click: function(){ app.quit(); } },
@@ -32,7 +33,7 @@ app.on('ready', function() {
     mainWindow = new BrowserWindow({
         width: 200,
         height: 600,
-        x : size.width,
+        x : size.width - 200,
         y : 0,
         resizable : false,
         transparent: true,
