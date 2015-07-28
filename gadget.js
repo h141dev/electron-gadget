@@ -1,10 +1,7 @@
 
 'use strict';
 
-var ipc = require('ipc');
-
 var gadgetList = [
-    'menu',
     'clock',
     'cpus',
 ];
@@ -22,12 +19,4 @@ function gadgetStart(){
         plugin.init();
     });
 };
-
-function openDev(){
-    ipc.send('openDevTools', 'ping');
-}
-
-function appClose(){
-    ipc.send('appClose', 'ping');
-}
 

@@ -2,9 +2,12 @@
 
 var ipc = require('ipc');
 var app = require('app');
+var Menu = require('menu');
+var Tray = require('tray');
 var BrowserWindow = require('browser-window');
 require('crash-reporter').start();
 var mainWindow = null;
+var appIcon = null;
 
 app.on('window-all-closed', function() {
     if (process.platform != 'darwin') {
@@ -13,6 +16,14 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
+    appIcon = new Tray('info-128.png');
+    var contextMenu = Menu.buildFromTemplate([
+            { label: 'OpenDevTools', click: function(){ mainWindow.openDevTools({detach:true}); } },
+            { label: 'Quit', click: function(){ app.quit(); } },
+    ]);
+    appIcon.setToolTip('Electron Desktop Gadget.');
+    appIcon.setContextMenu(contextMenu);
+
     var atomScreen = require('screen');
     var size = atomScreen.getPrimaryDisplay().workAreaSize;
 
@@ -25,22 +36,17 @@ app.on('ready', function() {
         y : 0,
         resizable : false,
         transparent: true,
-        frame: false
+        frame: false,
     });
+
+    mainWindow.setAlwaysOnTop(true);
+    mainWindow.setSkipTaskbar(true);
 
     mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
-});
-
-ipc.on('openDevTools', function(event, arg) {
-    mainWindow.openDevTools({detach:true});
-});
-
-ipc.on('appClose', function(event, arg) {
-    app.quit();
 });
 
 //console.log(process);
